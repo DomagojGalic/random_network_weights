@@ -1,6 +1,7 @@
 from itertools import permutations
 
 import numpy as np
+from tqdm import tqdm
 
 class Graph:
     def __init__(self, graphMatrix):
@@ -26,7 +27,7 @@ class Graph:
     
     def getAllWeights(self):
         permsDict = dict()
-        for perm in permutations(self.__alphabet):
+        for perm in tqdm(permutations(self.__alphabet)):
             if permsDict.get(perm) is None:
                 permsDict[perm] = self.getWeight(perm)
         return np.array(list(permsDict.values()))
