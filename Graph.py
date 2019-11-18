@@ -9,6 +9,10 @@ class Graph:
         self.__alphabet = [1] * (self.__shape[1] - 1) + [0] * (self.__shape[0] - 1)
     
     def getWeight(self, path):
+        """
+            0 -> step to the right
+            1 -> step to the left
+        """
         weight = 0
         i = 0
         j = 0
@@ -24,5 +28,5 @@ class Graph:
         permsDict = dict()
         for perm in permutations(self.__alphabet):
             if permsDict.get(perm) is None:
-                permsDict[perm] = getWeight(self.__matrix, perm)
-        return np.array(permsDict.values())
+                permsDict[perm] = self.getWeight(perm)
+        return np.array(list(permsDict.values()))
